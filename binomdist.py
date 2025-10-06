@@ -6,7 +6,6 @@ st.set_page_config(page_title="二項分布計算ツール", page_icon="🎲")
 
 st.title("🎲 二項分布計算ツール")
 
-st.write(st.secrets['API_KEY'])
 
 # --- 入力欄 ---
 col1, col2, col3 = st.columns(3)
@@ -28,9 +27,8 @@ cumulative = st.checkbox("累積確率（TRUE）", value=False)
 
 # --- 入力が変わるたびに自動で計算 ---
 prob = binom.cdf(x, n, p) if cumulative else binom.pmf(x, n, p)
-mode = "累積" if cumulative else "単発"
 
-st.success(f"✅ {mode}確率：P(X {'≤' if cumulative else '='} {x}) = {prob:.6f}")
+st.success(f"✅ 発生確率：P(X {'≤' if cumulative else '='} {x}) = {prob:.6f}")
 
 # --- 記録ボタン ---
 if st.button("この結果を記録"):
