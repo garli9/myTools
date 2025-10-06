@@ -6,6 +6,8 @@ st.set_page_config(page_title="二項分布計算ツール", page_icon="🎲")
 
 st.title("🎲 二項分布計算ツール")
 
+st.write(st.secrets['API_KEY'])
+
 # --- 入力欄 ---
 col1, col2, col3 = st.columns(3)
 with col1:
