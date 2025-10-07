@@ -14,14 +14,25 @@ with col1:
 with col2:
     x = st.number_input("成功回数 x", min_value=0, value=0, step=1)
 with col3:
-    p = st.number_input(
-        "成功確率 p",
-        min_value=0.000,
-        max_value=1.000,
-        value=0.100,
-        step=0.001,
-        format="%.3f"
-    )
+    # 数値入力と分数入力の切り替えをわかりやすく
+    st.write("成功確率 p の入力")
+    p_text = st.text_input("小数または分数で入力（例：0.125 または 1/8）", value="0.100")
+
+# --- p の解析 ---
+try:
+    if "/" in p_text:
+        num, denom = p_text.split("/")
+        p = float(num) / float(denom)
+    else:
+        p = float(p_text)
+except Exception:
+    st.error("⚠️ 有効な数値または分数を入力してください。")
+    st.stop()
+
+# --- バリデーション ---
+if not (0.0 <= p <= 1.0):
+    st.error("⚠️ 確率 p は 0〜1 の範囲で入力してください。")
+    st.stop()
 
 cumulative = st.checkbox("累積確率（TRUE）", value=False)
 
