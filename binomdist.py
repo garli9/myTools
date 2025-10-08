@@ -39,15 +39,15 @@ cumulative = st.checkbox("累積確率（TRUE）", value=False)
 # --- 入力が変わるたびに自動で計算 ---
 prob = binom.cdf(x, n, p) if cumulative else binom.pmf(x, n, p)
 
-st.success(f"✅ 発生確率：P(X {'≤' if cumulative else '='} {x}) = {prob:.6f}")
+st.success(f"✅ 発生確率：P(X {'≤' if cumulative else '='} {x}) =  {prob:.8f}（p={p:.5f}）")
 
 # --- 記録ボタン ---
 if st.button("この結果を記録"):
     result = {
         "試行回数 n": n,
         "成功回数 x": x,
-        "確率 p": round(p, 3),
-        "結果": round(prob, 6)
+        "確率 p": round(p, 5),
+        "結果": round(prob, 8)
     }
 
     if "history" not in st.session_state:
