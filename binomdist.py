@@ -47,7 +47,7 @@ if st.button("この結果を記録"):
         "試行回数 n": n,
         "成功回数 x": x,
         "確率 p": f"{p:.8f}",
-        "結果": f"{p:.8f}"
+        "結果": f"{prob:.8f}"
     }
 
     if "history" not in st.session_state:
